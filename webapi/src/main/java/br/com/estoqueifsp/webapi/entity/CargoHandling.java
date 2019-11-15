@@ -26,7 +26,7 @@ public class CargoHandling{
     private String date;
 
     @Column(nullable = false)
-    private Boolean transactionType;
+    private String transactionType;
 
     public long getId() {
         return id;
