@@ -66,5 +66,14 @@ public class ProductController{
        }else{
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
-    }    
+    }
+    
+    //listar por local
+    @CrossOrigin
+    @RequestMapping(value = "/productByLocal/{idLocal}", method = RequestMethod.PUT)
+    public List<Product> Get(@PathVariable(value = "idLocal") long idLocal, @Valid @RequestBody Product newProduct){
+       List<Product> productsInLocal = _productRepository.findByLocal(idLocal);
+         
+    }
+    
 }

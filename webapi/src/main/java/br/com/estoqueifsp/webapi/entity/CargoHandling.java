@@ -68,11 +68,11 @@ public class CargoHandling{
         this.date = date;
     }
 
-    public Boolean getTransactionType() {
+    public String getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(Boolean transactionType) {
+    public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
 }

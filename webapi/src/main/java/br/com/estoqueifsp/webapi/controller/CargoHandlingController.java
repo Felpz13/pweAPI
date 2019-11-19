@@ -36,7 +36,6 @@ public class CargoHandlingController{
     @CrossOrigin
     @RequestMapping(value = "/cargoHandling", method = RequestMethod.POST)
     public CargoHandling Post(@Valid @RequestBody CargoHandling cargoHandling){
-        String ola = "ola";
 
         return _cargoHandlingRepository.save(cargoHandling);
     }
