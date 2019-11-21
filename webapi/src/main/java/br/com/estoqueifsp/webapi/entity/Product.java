@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Product{
@@ -20,7 +22,10 @@ public class Product{
     private String type;
 
     @Column(nullable = false)
-    private String un;    
+    private String un;
+    
+    @Column(nullable = false)
+    private long idLocal;
 
     public long getId() {
         return id;
@@ -52,5 +57,13 @@ public class Product{
 
     public void setUn(String un) {
         this.un = un;
-    }    
+    }   
+    
+    public long getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(long idLocal) {
+        this.idLocal = idLocal;
+    } 
 } 

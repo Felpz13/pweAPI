@@ -70,10 +70,10 @@ public class ProductController{
     
     //listar por local
     @CrossOrigin
-    @RequestMapping(value = "/productByLocal/{idLocal}", method = RequestMethod.PUT)
-    public List<Product> Get(@PathVariable(value = "idLocal") long idLocal, @Valid @RequestBody Product newProduct){
-       List<Product> productsInLocal = _productRepository.findByLocal(idLocal);
-         
+    @RequestMapping(value = "/product/{idLocal}", method = RequestMethod.GET)
+    public List<Product> FindByLocal(@PathVariable(value = "idLocal") long idLocal){
+        return _productRepository.findByIdLocal(idLocal);
     }
+    
     
 }
