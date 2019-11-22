@@ -27,10 +27,13 @@ public class Product{
     @Column(nullable = false)
     private long idLocal;
 
+    @Column(nullable = false)
+    private long quantity;
+    
     public long getId() {
         return id;
     }
-
+        
     public void setId(long id) {
         this.id = id;
     }
@@ -65,5 +68,15 @@ public class Product{
 
     public void setIdLocal(long idLocal) {
         this.idLocal = idLocal;
-    } 
+    }
+    
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    
 } 

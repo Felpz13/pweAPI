@@ -11,4 +11,7 @@ import br.com.estoqueifsp.webapi.entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	List<Product> findByIdLocal(long idLocal);}
+	List<Product> findByIdLocal(long idLocal);
+	Product findByNameAndIdLocal(String name, long idLocal);
+
+}

@@ -7,4 +7,6 @@ import br.com.estoqueifsp.webapi.entity.Local;
 
 
 @Repository
-public interface LocalRepository extends JpaRepository<Local, Long> { }
+public interface LocalRepository extends JpaRepository<Local, Long> {
+    Local findByName(String name);
+}

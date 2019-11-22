@@ -16,11 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.estoqueifsp.webapi.entity.CargoHandling;
+import br.com.estoqueifsp.webapi.entity.Product;
+import br.com.estoqueifsp.webapi.entity.Local;
 import br.com.estoqueifsp.webapi.repository.CargoHandlingRepository;
+import br.com.estoqueifsp.webapi.repository.LocalRepository;
+import br.com.estoqueifsp.webapi.repository.ProductRepository;
 
 
 @RestController
 public class CargoHandlingController{
+    @Autowired
+    private ProductRepository _productRepository;
+    @Autowired
+    private LocalRepository _localRepository;
     @Autowired
     private CargoHandlingRepository _cargoHandlingRepository;
 
@@ -35,9 +43,30 @@ public class CargoHandlingController{
     //novo CargoHandling
     @CrossOrigin
     @RequestMapping(value = "/cargoHandling", method = RequestMethod.POST)
-    public CargoHandling Post(@Valid @RequestBody CargoHandling cargoHandling){
+    public int Post(@Valid @RequestBody CargoHandling cargoHandling){
 
-        return _cargoHandlingRepository.save(cargoHandling);
+        Local local = _localRepository.findByName(cargoHandling.getIdLocal());
+        Product product = _productRepository.findByNameAndIdLocal(cargoHandling.getIdProduct(), local.getId());
+        String tipo_transacao = cargoHandling.getTransactionType();
+        if(tipo_transacao.equals("entrada")){
+            long quantidade_aux = (product.getQuantity() + Long.parseLong(cargoHandling.getQuantity()));
+            product.setQuantity(quantidade_aux);
+        }else{
+            long quantidade_aux = (product.getQuantity() - Long.parseLong(cargoHandling.getQuantity()));
+            if (quantidade_aux < 0 ){
+                return 0;
+            }
+            product.setQuantity(quantidade_aux);
+        }
+
+        _productRepository.save(product);
+
+        return 1;
+
+        //Product product = _productRepository.findByNameProductAndLocal(cargoHandling.getIdProduct(), cargoHandling.getIdLocal());
+            //int oi = 2;
+
+        //return _cargoHandlingRepository.save(cargoHandling);
     }
 
     //alterar Produto
